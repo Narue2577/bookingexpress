@@ -1,0 +1,591 @@
+/* ===== Body Content Footer ===== */
+body {margin: 0;}
+body * {font-family: 'Kanit', sans-serif;}
+.in-body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.footer {
+    background-color: #111111;
+    color: white;
+    text-align: center;
+    margin-top: auto;
+    font-size: 14px;
+    padding-top: 15px;
+    padding-bottom: 2px;
+}
+
+
+/* ===== background ===== */
+.bg { background-color: #E6E7EA; }
+
+
+/* ===== Nav Bar ===== */
+.nav-item { margin-right: 20px; }
+.navblack {
+    background-color: #111111;
+    color: white;
+}
+.navbar {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
+.dropdown {
+    background-color: #367AB2;
+    border-radius: 5px;
+    margin-left: 15px;
+    min-width: 160px;
+}
+.opened .nav-link {
+    color: white !important;
+    font-weight: 700;
+}
+
+
+
+
+/* ===== logo ===== */
+.logo {
+    width: 160px;
+    height: auto;
+    margin: 2px 20px;
+}
+
+
+/* ===== LOGIN & REGISTER ===== */
+.box-login, .box-regis {
+    background-color: white;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+}
+.box-login {
+    border-radius: 15px;
+    width: 99%;
+}
+.box-regis {
+    width: 100%;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+.box-login input, .box-regis input {
+    background-color: #f8f8f8;
+    border: 1px solid #AAAAAA;
+    padding: 4px 10px;
+    display: block;
+    width: 100%;
+    text-align: center;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+
+/* ===== DIV width ===== */
+[class*="box-ww"] {
+    margin: auto;
+    background-color: white;
+    padding: 14px;
+    border-radius: 8px;
+}
+.box-addShadow {box-shadow: 4px 4px 4px rgba(60, 60, 60, 0.4);}
+.box-ww99 {width: 99%;}
+.box-ww98 {width: 98%;}
+
+.spaceDiv { margin-bottom: 15px; }
+
+
+/* ===== Scroll Div ===== */
+[class*="scrollD"] {
+    width: 100%;
+    overflow: auto;
+}
+.scrollD400 { height: 400px; }
+.scrollD500 { height: 500px; }
+.scrollD700 { height: 700px; }
+
+
+/* ===== Basic Button ===== */
+[class*="btn-"] {
+    padding: 8px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.btn-main {
+    background-color: #475A7E;
+    border: 1px solid #273C68;
+    color: white;
+}
+.btn-main:hover {
+    background-color: #273C68;
+    color: white;
+    text-decoration: none;
+}
+.btn-ok {
+    background-color: #54B738;
+    border: 1px solid #54B738;
+    color: white;
+}
+.btn-ok:hover {
+    background-color: #209612; 
+    color: white;
+    text-decoration: none;
+}
+.btn-ok:disabled, .btn-ok[disabled] {
+    background-color: #aaec98;
+    border: 1px solid #54B738;
+    cursor: default;
+}
+.btn-cancel {
+    background-color: white;
+    border: 1px solid #333333;
+    color: #111111;
+}
+.btn-cancel:hover {
+    background-color: #333333; 
+    color: white;
+    text-decoration: none;
+}
+.btn-red {
+    background-color: tomato;
+    border: 1px solid crimson;
+    color: white;
+}
+.btn-red:hover {
+    background-color: crimson;
+    color: white;
+    text-decoration: none;
+}
+.btn-green {
+    background-color: green;
+    color: white;
+    border: none;
+}
+.btn-green:hover {
+    background-color: darkgreen;
+    color: white;
+    text-decoration: none;
+}
+.btn-gray {
+    background-color: #dddddd;
+    border: 1px solid gray;
+    color: black;
+}
+.btn-gray:hover {
+    background-color: gray;
+    color: white;
+    text-decoration: none;
+}
+.btn-print {
+    background-color: gray;
+    border: 1px solid gray;
+    color: white;
+}
+.btn-print:hover {
+    background-color: #dddddd;
+    color: gray;
+    text-decoration: none;
+}
+.btn-tabmain {
+    background-color: #eff4fe;
+    border: 1px solid #435e98;
+    color: #435e98;
+}
+.btn-tabmain:hover {
+    background-color: #435e98;
+    color: white;
+    text-decoration: none;
+}
+.selectBtnTab {
+    background-color: #435e98;
+    color: white;
+}
+
+/* Circle (ถูก ผิด) Button */
+.circlex, .circleo {
+    color: white;
+    border: none;
+    border-radius: 50%;
+    margin: 2px;
+}
+.circlex { background-color: tomato; }
+.circlex:hover { background-color: red; }
+.circleo { background-color: limegreen; }
+.circleo:hover { background-color: green; }
+.circlex:hover i:hover, .circleo:hover i:hover {
+    color: white;
+}
+
+
+/* User - Head & Content */
+.head {
+    margin: 0;
+    background-color: #457F9F;
+    padding-top: 110px;
+    padding-bottom: 10px;
+    text-align: center;
+    color: white;
+}
+.head hr {
+    border: 2px solid white;
+    width: 40%;
+}
+.content {
+    margin: 0;
+    margin-top: 30px;
+    padding-bottom: 60px;
+}
+.content h5 { font-size: 21px; }
+.content hr {
+    width: 100px;
+    margin-top: 4px;
+    border: 1px solid #475A7E;
+    margin-left: 0;
+}
+
+
+/* ========== Modal ========== */
+.back-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+}
+.box-modal {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px 30px;
+    border-radius: 15px;
+    width: 55%;
+}
+.close-modal {
+    color: #888888;
+    float: right;
+    font-size: 26px;
+    margin-top: -20px;
+    margin-right: -15px;
+    font-weight: bold;
+}
+.close-modal:hover, .close-modal:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* ===== TABLE ===== */
+.tb-main {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 26px;
+    margin-bottom: 30px;
+}
+.tb-main tr th {
+    background-color: #36609D;
+    color: white;
+    padding: 10px 6px;
+    text-align: center;
+    border: 1px solid #cccccc;
+}
+.tb-main  tr td {
+    padding: 8px 6px;
+    border: 1px solid #cccccc;
+}
+.tb-main tr {background-color: white;}
+.tb-main tr.hideTD { background-color: white; }
+.tb-main tr.hideTD td {
+    border-top: none;
+    border-bottom: none;
+    padding: 2px 6px;
+}
+.tb-main tr:hover:not(.hideTD) td {
+    background-color: #d6d6d6;
+}
+.tb-main tr:nth-child(odd):not(.hideTD) {
+    background-color: #F0F1FC;
+}
+
+.tb-basic {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+    margin-top: 8px;
+}
+.tb-basic thead tr th {
+    background-color: #999999;
+    color: white;
+    padding: 2px 4px;
+    border: 1px solid #c1c1c1;
+}
+.tb-basic tbody tr td, .tb-basic tbody tr th {
+    padding: 2px;
+    border: 1px solid #c1c1c1;
+}
+
+.tb-mini {
+    width: 100%;
+    display: none;
+    margin-top: 25px;
+    font-size: 14px;
+}
+.tb-mini tr td {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+table .fa { cursor: pointer; }
+table .fa:hover { color: gray; }
+.fa span {
+    font-family: 'Kanit', sans-serif;
+}
+table .fa-pencil {color: goldenrod;}
+table .fa-trash, table .fa-user-times {color: #FF7E79;}
+.fa-download, .fa-file-pdf-o, table .fa-user-plus {color: #009408;}
+.fa-upload {color: #DE1300;}
+.fa-mouse-pointer {color: #222222;}
+.tb-main .fa { margin: 0 6px; }
+.tb-main .fa:hover { color: #888888; }
+
+
+/* ========== Span Status Tab ========== */
+.status-tab {
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 5px 15px;
+}
+
+/* ========== Tab for caretaker ========== */
+.btntab {
+    padding: 6px 18px;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    display: inline-block;
+    margin-bottom: 12px;
+    margin-right: 10px;
+}
+.btntab:hover {
+    color: white;
+    text-decoration: none;
+}
+.btntab .spanb {
+    font-size: 15px;
+    width: 50px;
+    text-align: center;
+    display: inline-block;
+    padding: 2px 5px;
+    border-radius: 50%;
+    background-color: white;
+    margin-left: 8px;
+    color: #666666;
+}
+.btntab .spannums {
+    background-color: red;
+    color: white;
+}
+#clickAll { background-color: #4984A4; }
+#clickAll:hover {background-color: #21597F;}
+#click01 { background-color: #EFBD3A; }
+#click01:hover {background-color: #C9A238;}
+#click02 { background-color: #447FC2; }
+#click02:hover {background-color: #234698;}
+#click03 { background-color: #883ACB; }
+#click03:hover {background-color: #7639AC;}
+#click04 { background-color: #D4208F; }
+#click04:hover {background-color: #B4247C;}
+.showntab {
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.7);
+    font-weight: 550;
+}
+
+
+/* ========== Tooltip ========== */
+.tooltip1 {position: relative;}
+.tooltip1:hover {text-decoration: none;}
+.tooltip1 .tooltiptext {
+    visibility: hidden;
+    background-color: #666666;
+    color: white;
+    font-size: 9px;
+    text-align: center;
+    border-radius: 4px;
+    padding: 3px 5px;
+    position: absolute;
+    bottom: 90%;
+    left: 50%;
+    margin-left: -15px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.tooltip1 .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+}
+.tooltip1:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* ===== radio button INPUT ===== */
+.rank{
+    display: flex;
+  align-items: center;
+  justify-content: center;   /* centers the whole group horizontally */
+  gap: 50px;                 /* distance between the two radio options */
+  padding: 8px 16px;
+  cursor: pointer;
+  margin: 0 auto  auto;  /* centers the box itself on the page */
+  width: fit-content;        /* border wraps snugly around content, not full width */
+}
+
+.rank input[type="radio"] {
+ display: inline-block !important;
+  width: auto !important;
+  margin: 0;
+
+.rank label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  cursor: pointer;
+}
+
+/* ===== INPUT ===== */
+.blockInput {
+    border: 1px solid #999999;
+    padding: 5px 15px;
+    border-radius: 10px;
+    background-color: white;
+    display: block;
+    width: 100%;
+}
+.basic-input {
+    border: 1px solid #999999;
+    padding: 5px 15px;
+    border-radius: 8px;
+    background-color: white;
+}
+.blockInput:read-only, .basic-input:read-only {
+    color: #5F5F5F;
+}
+
+
+/* ===== SELECT ===== */
+.blockSelect {
+    border: 1px solid #999999;
+    padding: 2px 15px;
+    border-radius: 10px;
+    background-color: #DFDFDF;
+    display: block;
+    width: 100%;
+}
+
+
+.text-left { text-align: left; }
+mark {background-color: yellow !important;}
+
+
+/* ========== คู่มือ ========== */
+.inBody {
+    display: flex;
+    flex-direction: column;
+    min-height: 20vh;
+}
+.manualDiv {
+    text-align: right;
+    color: white;
+    margin: 0;
+    margin-top: auto;
+    margin-bottom: 15px;
+    padding-top: 15px;
+    padding-bottom: 2px;
+    padding-right: 10px;
+}
+.manualDiv a {
+    background-color: #185CA0;
+    color: white;
+    text-decoration: none;
+    border-radius: 15px;
+    border: 1px solid #82C7DD;
+    padding: 10px 10px 10px 40px;
+    cursor: pointer;
+}
+.manualDiv a:hover {
+    color: white;
+}
+.manualDiv a img {
+    width: 50px;
+    position: absolute;
+    top: -12px;
+    right: 130px;
+}
+
+
+
+
+/* =================== Resize =================== */
+@media screen and (max-width: 991px) {
+    .logo { margin: 2px 0; }
+    .nav-item { margin-left: 40%; }
+    .dropdown { 
+        /* margin-left: 0; */
+        padding-left: 5px;
+        background-color: #333333;
+    }
+
+    /* index... */
+    .box-login { padding: 20px 14px; }
+    
+    /* Modal */
+    .box-modal {
+        padding: 19px 16px;
+        width: 70%;
+    }
+    .close-modal {
+        margin-top: -25px;
+        margin-right: -5px;
+    }
+
+    /* Table */
+    .tb-main { font-size: 14px; }
+
+    .nextlineMD { display:block; }
+}
+
+@media screen and (max-width: 767px) {
+    .logo {
+        margin: 2px 0;
+        margin-left: -2px;
+        width: 120px;
+    }
+    .nav-item { margin-left: 30%; }
+
+    /* Member Page */
+    .head h2 { font-size: 1.7em; }
+    .head h4 { font-size: 1em; }
+
+    /* Modal */
+    .box-modal {
+        padding: 18px 14px;
+        width: 90%;
+    }
+
+    .nextlineSM { display:block; }
+}

@@ -1,0 +1,40 @@
+{
+  "school_holidays": [
+    {
+      "id": 1,
+      "name": "วันจักรี",
+      "type": "public",
+      "date_in": "06-04-2026",
+      "date_out": "06-04-2026",
+      "period_time": "0:00-23:59",
+       "duration_days": 3,
+      "description": ""
+    },
+    {
+      "id": 2,
+      "name": "วันสงกรานต์",
+      "type": "public",
+      "date_in": "13-04-2026",
+      "date_out": "15-04-2026",
+      "period_time": "0:00-23:59",
+      "duration_days": 3,
+      "description": ""
+    },
+    {
+      "id": 3,
+      "name": "วันฉัตรมงคล",
+      "type": "public",
+      "date_in": "04-05-2026",
+      "date_out": "04-05-2026",
+      "period_time": "0:00-23:59",
+      "duration_days": 1,
+      "description": ""
+    }
+  ],
+  "meta": {
+    "year": 2026,
+    "country": "Thailand",
+    "total_holidays": 3,
+    "types": ["public", "school"]
+  }
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<head>
+    <%- include("partials/headtag") -%>
+    
+</head>
+<body class="bg">
+    <div class="in-body">
+        <div class="navblack">
+            <a href="/"><img class="logo" src="/logoCOSCI.png"></a>
+        </div>
+
+        <div style="text-align: center;">
+            <br><br>
+            <h1><i class="fa fa-exclamation-triangle"></i> เกิดข้อผิดพลาด</h1>
+            <span><%=errorData%></span>
+        </div>
+
+    
+        <!-- ดึงค่า footer มาแสดงจากไฟล์ footer.ejs -->
+        <%- include('partials/footer') -%>
+    </div>
+
+</body>
+</html>

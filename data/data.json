@@ -1,0 +1,185 @@
+{
+  "room601": {
+    "id": "room601",
+    "name": "Room 601",
+    "capacity": 54,
+    "rows": 7,
+    "seatsPerRow": 8,
+    "unused": ["4E", "5E"],
+    "layout": [
+      { "section": "Room 601", "rows": 7, "seatsPerRow": 8, "seatWidth": "A B C D   E F G H" }
+    ]
+  },
+  "room602": {
+    "id": "room602",
+    "name": "Room 602",
+    "capacity": 48,
+    "rows": 6,
+    "seatsPerRow": 8,
+    "unused": [],
+    "layout": [
+      { "section": "Room 602", "rows": 6, "seatsPerRow": 8, "seatWidth": "A B C D   E F G H" }
+    ]
+  },
+  "room701": {
+    "id": "room701",
+        "name": "Computer Room 701",
+        "capacity": 54,
+        "rows": 7,
+        "seatsPerRow": 8,
+        "unused": ["4E","5E"],
+        "occupied": [],
+        "layout": [
+          { "section": "Room 701", "rows": 7, "seatsPerRow": 8, "seatWidth": "A B C D   E F G H" }
+        ]
+  },
+   "room801": {
+     "id": "room801",
+        "name": "Computer Room 801",
+        "capacity": 55,
+        "rows": 8,
+        "seatsPerRow": 8,
+        "unused": ["1B","1C","1D","1E","1F","1G","1H","5E","6E"],
+        "occupied": [],
+        "layout": [
+          { "section": "Room 801", "rows": 8, "seatsPerRow": 8, "seatWidth": "A B C D   E F G H" }
+        ]
+
+   },
+   "room802": {
+       "id": "room802",
+        "name": "Computer Room 802",
+        "capacity": 56,
+        "rows": 8,
+        "seatsPerRow": 8,
+        "unused": ["1A","1B","1G","1H","5A","5H", "6A","6H"],
+        "occupied": [],
+        "layout": [
+          { "section": "Room 802","rows": 8, "seatsPerRow": 8, "seatWidth": "A B C D   E F G H" }
+        ]
+   },
+   "room901": {
+       "id": "room901",
+        "name": "Computer Room 901",
+        "capacity": 60,
+        "rows": 9,
+        "seatsPerRow": 8,
+        "unused": [],
+        "occupied": [],
+        "layout": [
+          { "section": "Room 901", "rows": 9, "seatsPerRow": 8, "seatWidth": "A B C D   E F G H"  }
+        ]
+   },
+    "room902": {
+ "id": "room902",
+ "name": "Computer Room 902",
+"capacity": 48,
+"rows": 6,
+"seatsPerRow": 8,
+"unused": [],
+ "occupied": [],
+ "layout": [
+ { "section": "Room 902", "rows": 6, "seatsPerRow": 8, "seatWidth": "A B C D   E F G H" }
+ ]
+ },
+ "room903": {
+  "id": "room903",
+"name": "Computer Room 903",
+"capacity": 54,
+"rows": 6,
+"seatsPerRow": 9,
+"unused": [],
+"occupied": [],
+"layout": [
+{ "section": "Room 903", "rows": 6, "seatsPerRow": 9, "seatWidth": "A B C D E   F G H I" }
+ ]
+   
+},
+"room904": {
+"id": "room904",
+"name": "Computer Room 904",
+"capacity": 20,
+"rows": 4,
+"seatsPerRow": 5,
+"unused": [],
+"occupied": [],
+"layout": [
+{ "section": "Room 904", "rows": 4, "seatsPerRow": 5, "seatWidth": "A B C D E" }
+ ]
+},
+"room1001":{
+"id": "room1001",
+"name": "Computer Room 1001",
+"capacity": 95,
+"rows": 10,
+"seatsPerRow": 10,
+"unused": ["10E","9E","8E","7J","6J"],
+"occupied": [],
+"layout": [
+{ "section": "Room 1001", "rows": 10, "seatsPerRow": 10, "seatWidth": "A B C D E   F G H I J" }
+]
+},
+"room1002": {
+"id": "room1002",
+"name": "Computer Room 1002",
+ "capacity": 48,
+"rows": 6,
+"seatsPerRow": 8,
+"unused": [],
+"occupied": [],
+"layout": [
+{ "section": "Room 1002", "rows": 6, "seatsPerRow": 8, "seatWidth": "A B C D   E F G H" }
+ ]
+ },
+ "room1003":{
+"id": "room1003",
+ "name": "Computer Room 1003",
+  "capacity": 54,
+"rows": 6,
+"seatsPerRow": 9,
+"unused": ["10E","9E","8E","7J","6J"],
+"occupied": [],
+"layout": [
+{ "section": "Room 1003", "rows": 6, "seatsPerRow": 9, "seatWidth": "A B C D E   F G H I" }
+]
+},
+"room1101":{
+"id": "room1101",
+"name": "Computer Room 1101",
+ "capacity": 72,
+"rows": 9,
+"seatsPerRow": 8,
+"unused": [],
+"occupied": [],
+"layout":  [
+ { "section": "Room 1101", "rows": 9, "seatsPerRow": 8, "seatWidth": "A B C D   E F G H" }
+ ]
+ },
+"room1102":{
+"id": "room1102",
+"name": "Computer Room 1102",
+"capacity": 45,
+"rows": 5,
+"seatsPerRow": 9,
+"unused": [],
+"occupied": [],
+"layout": [
+ { "section": "Room 1102", "rows": 5, "seatsPerRow": 9, "seatWidth": "A B C D E   F G H I" }
+]
+},
+"room1103": {
+"id": "room1103",
+ "name": "Computer Room 1103",
+"capacity": 54,
+"rows": 6,
+ "seatsPerRow": 9,
+"unused": [],
+"occupied": [],
+"layout": [
+ { "section": "Room 1103", "rows": 8, "seatsPerRow": 8, "seatWidth": "A B C D E   F G H I" }
+]
+ }
+
+}
+
+

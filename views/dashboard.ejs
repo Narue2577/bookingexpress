@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<head>
+    <%- include("partials/headtag") -%>
+    <style>
+        .head {
+            padding-top: 110px;
+            padding-bottom: 60px;
+            text-align: center;
+        }
+        /*====language switch=====*/
+        .langu{
+            color: #E6E7EA;
+            text-decoration: none;
+        }
+        
+
+        /* =================== Resize =================== */
+        @media screen and (max-width: 991px) {
+            .tb-main { font-size: 0.7em; }
+        }
+        @media screen and (max-width: 767px) {
+            .head { padding-bottom: 30px; }
+            .tb-main { display: none; }
+            .tb-mini { display: table; }
+        }
+    </style>
+
+</head>
+<body class="bg">
+   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" >
+    <a class="navbar-brand" href="/">
+            <img class="logo" src="/logoCOSCI.png">
+        </a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navContent" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>    
+  
+ <div class="collapse navbar-collapse" id="navContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#section2">ห้อง</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/booking/upload">ตารางเรียน</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/booking/profile">โปรไฟล์</a>
+                </li>
+                <li class="nav-link" href="#section4">
+                    <div class="lang-switch">
+                    <a class="langu" href="?lang=th">TH</a> |
+                    <a class="langu" href="?lang=en">EN</a> |
+                    <a class="langu" href="?lang=ch">中文</a>
+</div>
+                </li>
+                <li class="nav-item" href="#section1">
+                  <a class="nav-link" href="/auth/logout" >ออกจากระบบ</a>
+                </li>
+            </ul>
+        </div>
+</nav>
+    <div class="container-fluid">
+        <div class="row head">
+            <div class="col-md-1 col-lg-3"></div>
+            <div class="col-md-10 col-lg-6">
+                <div class="box-ww99" style="text-align: left; color: #222222;">
+                    <h5>
+                        สวัสดี! &nbsp;
+                        <span class="nextlineSM">
+                           
+                        </span>
+                    </h5>
+                    
+                        วิชาเอก <br>
+                    
+                        <span class="nextlineSM"> 
+           ตำแหน่ง : &nbsp;
+           
+                </div>
+            </div>
+            <div class="col-md-1 col-lg-3"></div>
+        </div>
+        
+        <div class="row content">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
+                <h5>รายการยืมคืนปัจจุบัน</h5> <hr>
+    
+                <table class="tb-main">
+                    <thead>
+                        <tr>
+                            <th style="width: 6%;">ลำดับ</th>
+                            <th style="width: 11%;">วันที่ทำรายการ</th>
+                            <th style="width: 11%;">วันที่ยืม</th>
+                            <th style="width: 11%;">วันที่คืน</th>
+                            <th style="width: 18%;">รายการ</th>
+                            <th>สถานะ</th>
+                            <th style="width: 14%;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            
+                                <tr style="text-align: center;">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+
+                                            <a href="/borrow_2/" class="fa fa-arrow-circle-right">
+                                                <span> ทำรายการต่อ</span>
+                                            </a>
+                                            <br>
+                                            <a class="fa fa-trash" onclick="setBowId('')">
+                                                <span> ลบ</span>
+                                            </a>
+
+                                            <a href="/member" class="fa fa-star">
+                                                <span> ประเมิน</span>
+                                            </a>
+
+                                            <a href="/borrow_detail/" class="fa fa-arrow-circle-right">
+                                                <span> ดูรายละเอียด</span>
+                                            </a>
+                            
+                                    </td>
+                                </tr>
+                           
+                        
+                            <tr>
+                                <td colspan="100%" style="text-align: center;">
+                                    <br>
+                                    ไม่พบรายการยืมคืนอุปกรณ์ &nbsp;&nbsp;
+                                    <a href="/borrow_0" class="btn-main">ยืมอุปกรณ์</a>
+                                    <br><br>
+                                </td>
+                            </tr>
+                      
+                    </tbody>
+                </table>
+    
+                <table class="tb-mini">
+                   
+                            <tr style="border-top: 1px solid #888888;">
+                                <td colspan="100%" style="text-align: right;">
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 42px;"></td>
+                                <td>
+                                    <b style="color: #555555;">วันที่ทำรายการ:</b> 
+                                    &nbsp; &nbsp;  <br>
+                                    <b style="color: #555555;">วันที่ยืมอุปกรณ์:</b> 
+                                    &nbsp; &nbsp;  <br>
+                                    <b style="color: #555555;">วันที่คืนอุปกรณ์:</b> 
+                                    &nbsp;  &nbsp;  <br>
+                                    <b style="margin-top: 6px; display: block;">
+                                        ยืม ( รายการ)
+                                    </b>
+                                </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #888888;">
+                                <td colspan="100%" style="text-align: right;">
+                                    
+                                        <a class="fa fa-trash" onclick="setBowId('')">
+                                            <span> ลบ</span>
+                                        </a>
+                                        &nbsp;
+                                        <a href="/borrow_2/" class="fa fa-arrow-circle-right">
+                                            <span> ทำรายการต่อ</span>
+                                        </a>
+                                    
+                                        <a href="/member_bowrating/" class="fa fa-star">
+                                            <span> ประเมิน</span>
+                                        </a>
+                                    
+                                        <a href="/borrow_detail/" class="fa fa-arrow-circle-right">
+                                            <span> ดูรายละเอียด</span>
+                                        </a>
+                                    
+                                </td>
+                            </tr>
+         
+                    
+                        <tr style="border-top: 1px solid #888888; border-bottom: 1px solid #888888;">
+                            <td colspan="100%" style="text-align: center;">
+                                <br>
+                                ไม่พบรายการยืมคืนอุปกรณ์ <br><br>
+                                <a href="/borrow_0" class="btn-main">ยืมอุปกรณ์</a>
+                                <br><br>
+                            </td>
+                        </tr>
+        
+                </table>
+
+                <p>
+                    <br><br>
+                    **รายการที่มีสถานะ "<b style="color: #000000;">กำลังทำรายการ</b>" คือ ยังไม่ยืนยันรายการยืม 
+                    หากไม่ทำรายการต่อ จะถูกลบทิ้งไปโดยอัตโนมัติเมื่อผ่านไปแล้ว 7 วัน 
+                    แต่หากทำรายการต่อ ข้อมูลวันที่กับรายการอุปกรณ์จะถูกรีเซ็ตค่าใหม่ นั่นคือคุณอาจต้องกำหนดวันที่ยืมคืนใหม่และเลือกอุปกรณ์ที่จะยืมใหม่อีกครั้ง
+                </p>
+            </div>
+            <div class="col-lg-1"></div>
+        </div>
+    </div>
+
+    <br><br><br><br>
+    <div class="inBody">
+        <div class="manualDiv">
+            <div class="col-lg-12">
+                
+                <a href="" target="_blank">
+                  <img src="/icon-book.png">
+                  คู่มือการใช้งาน
+                </a>
+                <br><br>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- ===== Delete ===== -->
+    <form action="/change_borrow_status" method="POST" hidden>
+        <input name="cgbowid" hidden>
+        <input name="cgbowstatus" value="0">
+        <button type="submit" id="clickDelSubmit"> </button>
+    </form>
+
+</body>
+
+
+
+<script>
+
+    navAction();
+
+    // ช่วง COVID-19
+    // alert('สำหรับนิสิตที่จำเป็นต้องเข้ามาที่วิทยาลัยฯ นิสิตจะต้องตรวจ ATK ที่โต๊ะ รปภ. ชั้น 1 โดยนิสิตต้องนำชุดตรวจมาเอง \nขออภัยในความไม่สะดวก');
+
+    function setBowId(bwid) {
+        $('input[name="cgbowid"]').val(bwid);
+        $('#clickDelSubmit').click();
+    }
+
+</script>
+</html>

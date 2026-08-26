@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<head>
+    <%- include("partials/headtag") -%>
+    
+    <style>
+        .content {
+            margin-top: 40px;
+        }
+    </style>
+
+</head>
+<body class="bg">
+    <% if (navTYPE == 'admin') { %>
+        <%- include("partials/head_nav_admin") -%>
+    <% } else { %>
+        <%- include("partials/head_nav") -%>
+    <% } %>
+
+    <div class="container-fluid">
+        <div class="row head">
+            <div class="col-lg-12">
+                <h2>ข้อมูลสมาชิก</h2> <hr>
+            </div>
+        </div>
+    
+        <div class="row content">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
+                <h5>ข้อมูลสมาชิก</h5> <hr>
+                <div class="box-ww98">
+                    <div class="row mdata" style="padding-top: 12px;">
+                        <% if (navTYPE == 'student') { %>
+                            <div class="col-lg-6 spaceDiv">
+                                <b>รหัสนิสิต</b> &nbsp; <%=memDatas.stu_id%>
+                            </div>
+                        <% } %>
+                        <div class="col-lg-6 spaceDiv">
+                            <b>ชื่อ-นามสกุล</b> &nbsp; <%=(navTYPE == 'student') ? memDatas.stu_name : memDatas.staff_name%>
+                        </div>
+                        <% if (navTYPE != 'student') { %>
+                            <div class="col-lg-6 spaceDiv">
+                                <b>ตำแหน่ง</b> &nbsp; <%=memDatas.staff_position%>
+                            </div>
+                        <% } else { %>
+                            <div class="col-lg-12 spaceDiv">
+                                <b>วิชาเอก</b> &nbsp; <%=memDatas.maj_th_name%>
+                            </div>
+                        <% } %>
+                        <div class="col-lg-6 spaceDiv">
+                            <b>อีเมล</b> &nbsp; <%=memDatas.mem_email%>
+                        </div>
+                        <div class="col-lg-6 spaceDiv">
+                            <b>เบอร์โทร</b> &nbsp; <%=memDatas.mem_phone%>
+                        </div>
+                        <% if (navTYPE == 'caretaker') { %>
+                            <div class="col-lg-12 spaceDiv">
+                                <b>ลิงก์ (Google Forms) แบบประเมิน</b> &nbsp; 
+                                <span style="word-wrap: break-word;">
+                                    <%=(memDatas.mem_link == null || memDatas.mem_link == '') ? '-' : memDatas.mem_link%>
+                                </span>
+                            </div>
+                        <% } %>
+                        <div class="col-lg-12" style="text-align: right;">
+                            <br>
+                            <button id="clickEditM" class="btn-ok">แก้ไขข้อมูล</button>
+                        </div>
+                    </div>
+                    <form action="/edit_info" method="POST" class="meditdata">
+                        <div class="row" style="padding-top: 12px;">
+                            <input name="editmid" value="<%=memDatas.mem_id%>" hidden>
+                            <% if (navTYPE == 'student') { %>
+                                <div class="col-lg-6 spaceDiv">
+                                    <b>รหัสนิสิต</b> &nbsp; <%=memDatas.stu_id%>
+                                </div>
+                            <% } %>
+                            <div class="col-lg-6 spaceDiv">
+                                <b>ชื่อ-นามสกุล</b> &nbsp; <%=(navTYPE == 'student') ? memDatas.stu_name : memDatas.staff_name%>
+                            </div>
+                            <% if (navTYPE == 'student') { %>
+                                <div class="col-lg-12 spaceDiv">
+                                    <b>วิชาเอก</b> &nbsp; <%=memDatas.maj_th_name%>
+                                </div>
+                            <% } else { %>
+                                <div class="col-lg-6 spaceDiv">
+                                    <b>ตำแหน่ง</b> &nbsp; <%=memDatas.staff_position%>
+                                </div>
+                            <% } %>
+                            <div class="col-lg-6 spaceDiv">
+                                <b>อีเมล</b> &nbsp; 
+                                <input name="newmail" value="<%=memDatas.mem_email%>"" class="basic-input" 
+                                pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                            </div>
+                            <div class="col-lg-6 spaceDiv">
+                                <b>เบอร์โทร</b> &nbsp; 
+                                <input name="newphone" value="<%=memDatas.mem_phone%>" class="basic-input"
+                                pattern="0[0-9]{2}-[0-9]{3}-[0-9]{4}" placeholder="รูปแบบ 0XX-XXX-XXXX" required>
+                            </div>
+                            <% if (navTYPE == 'caretaker') { %>
+                                <div class="col-lg-12 spaceDiv">
+                                    <b>ลิงก์ (Google Forms) แบบประเมิน <small>(ลิงก์แบบเต็มหรือแบบสั้นก็ได้)</small></b> <br> 
+                                    <input name="newctklink" value="<%=memDatas.mem_link%>" class="blockInput"
+                                    placeholder="https://forms.gle......." >
+                                </div>
+                            <% } %>
+                            <div class="col-lg-12" style="text-align: right;">
+                                <br>
+                                <a href="/profile" class="btn-cancel">ยกเลิก</a>
+                                <button type="submit" class="btn-ok">บันทึกข้อมูล</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <br><br>
+    
+                <h5>เปลี่ยนรหัสผ่าน</h5> <hr>
+                <div class="box-ww98">
+                    <form action="/edit_pass" method="POST" onsubmit="return checkE2()">
+                        <div class="row" style="padding-top: 12px;">
+                            <div class="col-lg-3 spaceDiv"><b>รหัสผ่านเดิม</b></div>
+                            <div class="col-lg-9 spaceDiv">
+                                <input id="oldpass1" type="password" class="basic-input" style="width:99%;" required>
+                                <span id="oldpass2" hidden><%=memDatas.mem_password%></span>
+                                <input name="cgepmid" value="<%=memDatas.mem_id%>" hidden>
+                                <br>
+                                <span id="oldnomatch0" style="color:red;">
+                                    รหัสผ่านเดิมไม่ถูกต้อง!
+                                </span>
+                            </div>
+                            <div class="col-lg-3 spaceDiv"><b>รหัสผ่านใหม่</b></div>
+                            <div class="col-lg-9 spaceDiv">
+                                <input name="newpass" id="newpass" type="password" class="basic-input" style="width:99%;" minlength="4" maxlength="15" required>
+                                <span style="display: block; color: #333; font-size: 12px;">รหัสผ่านต้องมีความยาว 4 ถึง 15 ตัวอักษร</span>
+                            </div>
+                            <div class="col-lg-3 spaceDiv"><b>ยืนยันรหัสผ่านใหม่</b></div>
+                            <div class="col-lg-9 spaceDiv">
+                                <input id="newpass2" type="password" class="basic-input" style="width:99%;" minlength="4" maxlength="15" required>
+                                <br>
+                                <span id="passnomatch" style="color:red;">
+                                    รหัสผ่านใหม่ไม่ตรงกัน!!
+                                </span>
+                            </div>
+                            <div class="col-lg-12" style="text-align: right;">
+                                <br>
+                                <a href="/profile" class="btn-cancel">ยกเลิก</a>
+                                <button type="submit" class="btn-ok">บันทึกข้อมูล</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-1"></div>
+        </div>
+    </div>
+
+    <br><br><br>
+
+
+</body>
+
+<%- include("partials/foottag") -%>
+<script>
+
+    navAction();
+
+    $('.meditdata').hide();
+    $('#clickEditM').click(function() {
+        $('.mdata').hide();
+        $('.meditdata').show();
+    });
+
+    //เปลี่ยนรหัสผ่าน
+    $('#passnomatch').hide();
+    $('#oldnomatch0').hide();
+    let isMatch = false;
+    let isMatch2 = true;
+    $('#oldpass1').keyup(function() {
+        let p1Val = upLowString($(this).val())
+        p1Val = codeString(codeString(p1Val));
+        if (p1Val != $('#oldpass2').text()) {
+            $('#oldnomatch0').show();
+            isMatch2 = false;
+        } else {
+            $('#oldnomatch0').hide();
+            isMatch2 = true;
+        }
+    });
+
+    $('#newpass').keyup(function() {
+        if ($(this).val() != $('#newpass2').val()) {
+            $('#passnomatch').show();
+            isMatch = false;
+        } else {
+            $('#passnomatch').hide();
+            isMatch = true;
+        }
+    });
+    $('#newpass2').keyup(function() {
+        if ($(this).val() != $('#newpass').val()) {
+            $('#passnomatch').show();
+            isMatch = false;
+        } else {
+            $('#passnomatch').hide();
+            isMatch = true;
+        }
+    });
+
+    function checkE2() {
+        const v1 = ($('#oldpass1').val()).length;
+        const v2 = ($('#newpass').val()).length;
+        const v3 = ($('#newpass2').val()).length;
+        if (v1>0 && v2>0 && v3>0 && isMatch && isMatch2) {
+            return true;
+        }
+        else {
+            alert("กรุณากรอกข้อมูลให้ครบถ้วนและถูกต้อง");
+            return false;
+        }
+    }
+
+</script>
+</html>

@@ -1,0 +1,40 @@
+<% var navTYPE, showPAGE, memDatas; %>
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <a class="navbar-brand" href="">
+        <img class="logo" src="/logoCOSCI.png">
+    </a>
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#navContent" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse justify-content-end" id="navContent">
+        <ul class="navbar-nav">
+            <% if (navTYPE == 'admin') { %>
+                <li class="nav-item <%=(showPAGE == 'adm_home') ? 'opened' : '' ; %> ">
+                    <a class="nav-link" href="/admin">
+                        <i class="fa fa-home"></i>&nbsp;หน้าหลัก
+                    </a>
+                </li>
+            <% } %>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                <i class="fa fa-user-circle"></i>&nbsp;<%=memDatas.mem_id%>
+              </a>
+              <div class="dropdown-menu">
+                <% if (showPAGE == 'mem_info') { %>
+                    <a class="dropdown-item" href="/profile" style="background-color: #dddddd;">
+                <% } else { %>
+                    <a class="dropdown-item" href="/profile">
+                <% } %>
+                    <i class="fa fa-gear"></i>&nbsp;ข้อมูลสมาชิก
+                </a>
+                <a class="dropdown-item" href="/">
+                    <i class="fa fa-sign-out"></i>&nbsp;ออกจากระบบ
+                </a>
+              </div>
+            </li>
+        </ul>
+    </div>
+</nav>

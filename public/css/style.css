@@ -1,0 +1,155 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.photo{
+    height: 60px;
+    width: auto;
+}
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #007cb7;
+}
+.topnav .menu{
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 1px;
+    padding: 2px 15px;
+    border-radius: 20px;
+    transition: 0.3s;
+    transition-property: background;
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.menu a {
+  font-size: 1rem;
+  line-height: 60px;   /* match logo height so text vertically centers with it */
+  text-decoration: none;
+  color: #ffffff;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Style the content */
+.content {
+    background-color: #007cb7;
+    height:30%;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: right;
+  min-height: 100dvh;
+  padding: 1rem;              /* prevents card from touching screen edges on mobile */
+  box-sizing: border-box;
+}
+
+.box-login{
+    padding-bottom: 20px;
+    padding-left: 14px;
+    padding-right: 14px;
+    padding-top: 20px;
+    box-sizing: border-box;
+    text-align:center;
+    width: 50%;
+    position: relative;
+}
+
+input[type=text], input[type=password], select {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=radio]{                                                                                                    
+    width: 1.15em;                                          
+    height: 1.15em;
+    border-radius: 50%;
+
+    /* White border = spacing between dot and ring */
+    border: 0.15em solid #FFF;
+
+    /* box-shadow for the outer ring */
+    box-shadow: 0 0 0 0.1em #999;
+
+    /* Center the ::before dot */
+
+    place-content: center;
+}
+
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+form{
+border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.footer {
+  background-color: black;
+  color: #FFF;
+  padding: 10px;
+}
+
+ /* =================== Resize =================== */
+        @media screen and (max-width: 991px) {
+            #section1 { padding-top: 160px; padding-bottom: 90px; }
+            #section1 .ihead { text-align: center; padding: 5px; }
+            #section1 .ihead hr { margin-left: auto; }
+            #section1 .icontent { padding: 0 9%; padding-top: 6px; }
+            #section2 .ihead { padding: 80px 5px 40px 5px; }
+            #section3 .ihead .contact-left { border-right: none; }
+            #section3 .ihead .contact-hr { display: block; }
+        }
+        @media screen and (max-width: 767px) {
+            #section1 { padding-top: 100px; padding-bottom: 5px; }
+            #section1 .ihead h1 { font-size: 2.5em; }
+            #section1 .ihead h3 { font-size: 1.6em; }
+            #section1 .icontent { padding: 0 12px; padding-top: 2px; }
+            #section2 .ihead { padding-left: 12px; padding-right: 12px; }
+        }

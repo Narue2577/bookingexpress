@@ -1,0 +1,91 @@
+<% var navTYPE, showPAGE, memDatas; %>
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <a class="navbar-brand" href="">
+        <img class="logo" src="/logoCOSCI.png">
+    </a>
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#navContent" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse justify-content-end" id="navContent">
+        <ul class="navbar-nav">
+            <% if (navTYPE == 'caretaker') { %>
+                <li class="nav-item <%=(showPAGE == 'ctk_home') ? 'opened' : '' ; %> ">
+                    <a class="nav-link" href="/caretaker">
+                        <i class="fa fa-home"></i>&nbsp;หน้าหลัก
+                    </a>
+                </li>
+                <li class="nav-item <%=(showPAGE == 'manage_equip') ? 'opened' : '' ; %> ">
+                    <a class="nav-link" href="/manage_equipments">
+                        <i class="fa fa-clipboard"></i>&nbsp;อุปกรณ์/ครุภัณฑ์
+                    </a>
+                </li>
+                <li class="nav-item <%=(showPAGE == 'all_bowhis') ? 'opened' : '' ; %> ">
+                    <a class="nav-link" href="/all_bowrow_history">
+                        <i class="fa fa-history"></i>&nbsp;ประวัติ & ค้นหา
+                    </a>
+                </li>
+                <li class="nav-item <%=(showPAGE == 'ctk_borrow') ? 'opened' : '' ; %> ">
+                    <a class="nav-link" href="/ct_borrow">
+                        <i class="fa fa-camera"></i>&nbsp;ยืมอุปกรณ์
+                    </a>
+                </li>
+            <% } %>
+            <% if (navTYPE == 'student' || navTYPE == 'staff') { %>
+                <li class="nav-item <%=(showPAGE == 'mem_home') ? 'opened' : '' ; %> ">
+                    <a class="nav-link" href="/mem_home/<%=navTYPE%>">
+                        <i class="fa fa-home"></i>&nbsp;หน้าหลัก
+                    </a>
+                </li>
+                <% if (navTYPE == 'staff') { %>
+                    <% const staffid = memDatas.staff_id; %>
+                    <% if ( staffid.charAt(0) == '1' ) { %>
+                        <li class="nav-item <%=(showPAGE == 'ta_approve') ? 'opened' : '' ; %> ">
+                            <a class="nav-link" href="/staff_allapprove">
+                                <i class="fa fa-bell"></i>&nbsp;อนุมัติการยืม
+                            </a>
+                        </li>
+                    <% } %>
+                <% } %>
+                <li class="nav-item <%=(showPAGE == 'mem_borrow') ? 'opened' : '' ; %>">
+                    <a class="nav-link" href="/borrow_0">
+                        <i class="fa fa-camera"></i>&nbsp;ยืมอุปกรณ์
+                    </a>
+                </li>
+                <li class="nav-item <%=(showPAGE == 'mem_bowhis') ? 'opened' : '' ; %>"">
+                    <a class="nav-link" href="/mem_bowhistory">
+                        <i class="fa fa-history"></i>&nbsp;ประวัติการยืมคืน
+                    </a>
+                </li>
+            <% } %>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                <i class="fa fa-user-circle"></i>&nbsp;<%=memDatas.mem_id%>
+              </a>
+              <div class="dropdown-menu">
+                <% if (showPAGE == 'mem_info') { %>
+                    <a class="dropdown-item" href="/profile" style="background-color: #dddddd;">
+                <% } else { %>
+                    <a class="dropdown-item" href="/profile">
+                <% } %>
+                    <i class="fa fa-gear"></i>&nbsp;ข้อมูลสมาชิก
+                </a>
+                <% if (navTYPE == 'caretaker') { %>
+                    <% if (showPAGE == 'ctk_score') { %>
+                        <a class="dropdown-item" href="/borrowservice_score" style="background-color: #dddddd;">
+                    <% } else { %>
+                        <a class="dropdown-item" href="/borrowservice_score">
+                    <% } %>
+                        <i class="fa fa-star"></i>&nbsp;คะแนนในเว็บ
+                    </a>
+                <% } %>
+                <a class="dropdown-item" href="/">
+                    <i class="fa fa-sign-out"></i>&nbsp;ออกจากระบบ
+                </a>
+              </div>
+            </li>
+        </ul>
+    </div>
+</nav>
