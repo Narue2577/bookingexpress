@@ -4,5 +4,11 @@
   "student": "Student",
   "staff": "Staff",
   "password": "Password",
-  "buasri":"Buasri ID"
+  "buasri":"Buasri ID",
+  "register":"Register",
+  "room":"Room",
+  "contact":"Contact",
+  "forgotpass":"Forgot your password?",
+  "policy":"Policy",
+  "welcome":"Welcome!"
 }
