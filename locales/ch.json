@@ -4,5 +4,11 @@
   "student": "学生",
   "staff": "职员",
   "password": "密码",
-  "buasri":"รหัสบัวศรี"
+  "buasri":"รหัสบัวศรี",
+  "register":"Register",
+  "room":"Room",
+  "contact":"Contact",
+  "forgotpass":"ลืมรหัสผ่าน?",
+  "policy":"Policy",
+  "welcome":"Welcome!"
 }
