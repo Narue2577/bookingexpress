@@ -154,10 +154,10 @@
   transform: translateY(-4px);
 }
 
-..room-card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
+.room-card img {
+    width: 220px;
+  height: 120px;  /* controls displayed size */
+  /*object-fit: cover;  crops to fill without distortion */
   display: block;
 }
 
@@ -175,7 +175,10 @@
   color: #666;
   font-size: 0.9rem;
 }
-
+.real-datetime-clock{
+    background-color: rgb(13, 69, 69);
+    font-size: large;
+}
 /* Responsive — stack down for smaller screens */
 @media (max-width: 900px) {
   .rooms-grid {
@@ -227,13 +230,13 @@
  <div class="collapse navbar-collapse" id="navContent">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#section1">เข้าสู่ระบบ</a>
+                    <a class="nav-link" href="#section1"><%= t('login') %></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#section2">ห้อง</a>
+                    <a class="nav-link" href="#section2"><%= t('room') %></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#section3">ติดต่อ</a>
+                    <a class="nav-link" href="#section3"><%= t('contact') %></a>
                 </li>
                 <li class="nav-link" href="#section4">
                     <div class="lang-switch">
@@ -280,6 +283,9 @@
             <div class="ihead col-lg-12">
                 <h2>ห้อง</h2> <hr>
                 ห้องเรียนทั้งหมดของวิทยาลัยนวัตกรรมสื่อสารสังคม
+                <div class="real-datetime-clock">
+               <span id="date-txt"></span> — <span id="txt"></span>
+            </div>
             </div>
             <div id="categories" class="rooms-grid">
             <% data.forEach(room => { %>
@@ -330,8 +336,38 @@ navAction();
         $(this).addClass('blue-a');
     });
     
-   
+  function startTime() {
+  const today = new Date();
 
+  // Time
+  let h = today.getHours();
+  let m = today.getMinutes();
+  let s = today.getSeconds();
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('txt').innerHTML = h + ":" + m + ":" + s;
 
+  // Date
+  const days = ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'];
+  const months = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน',
+                   'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
+
+  const dayName = days[today.getDay()];
+  const dateNum = today.getDate();
+  const monthName = months[today.getMonth()];
+  const yearBE = today.getFullYear() + 543; // Thai Buddhist Era year
+
+  document.getElementById('date-txt').innerHTML =
+    `วัน${dayName}ที่ ${dateNum} ${monthName} ${yearBE}`;
+
+  setTimeout(startTime, 1000);
+}
+
+function checkTime(i) {
+  if (i < 10) { i = "0" + i; }
+  return i;
+}
+
+startTime();
 </script>
 </html>
