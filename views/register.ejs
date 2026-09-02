@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="th">  
+<head>
+ <%- include("partials/headtag") -%>
+
+ <style>
+
+   .nav-item { margin-left: 20px; }
+        
+        #section1 {
+            background-image: url(/bg-cosci.png);
+            /* background-position: center top; */
+            background-position: center;
+            background-repeat: no-repeat;
+            padding-top: 170px;
+            padding-bottom: 150px;
+        }
+        #section1 .ihead {
+            padding-left: 70px;
+            color: white;
+            text-align: left;
+            background-color: transparent;
+        }
+        #section1 .ihead hr {
+            border: 2px solid white;
+            width: 45%;
+            margin-left: 0;
+        }
+        #section1 .icontent {
+            padding: 0 9%;
+            padding-top: 130px;
+        }
+
+        #section2 .ihead {
+            color: white;
+            padding: 100px 0 70px 0;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            position: static;
+        }
+        #section2 .ihead hr, #section3 .ihead hr {
+            border: 2px solid white;
+            width: 110px;
+        }
+
+        #section3 {
+            color: white;
+            background: url(/bg-cosci1.jpeg) center top no-repeat fixed;
+            background-size: cover;
+        }
+        #section3 .ihead {
+            background-color: rgba(0, 0, 0, 0.7);
+            text-align: center;
+            padding-top: 110px;
+            padding-bottom: 80px;
+        }
+        #section3 .ihead .contact-left {
+            border-right: 1px solid white;
+        }
+        #section3 .ihead .contact-hr {
+            border-bottom: 1px solid white;
+            width: 45%;
+            display: none;
+        }
+
+        #section4 .ihead {
+            color: white;
+            padding: 130px 0 70px 0;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            position: static;
+        }
+
+        /* ========== Category & Sets ========== */
+        #section2 #categories {
+            padding: 25px 0 30px 0;
+            text-align: center;
+        }
+        #section2 #categories a {
+            display: inline-block;
+            color: #666666;
+            font-weight: 500;
+            padding: 10px 24px;
+            margin: 0 10px;
+            margin-bottom: 15px;
+            background: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        #section2 #categories a.blue-a {
+            color: white;
+            background-color: #007CB7;
+        }
+        #section2 #categories a:hover {
+            text-decoration: none;
+            color: white;
+            background-color: #007CB7;
+        }
+
+        .a-sets {
+            background-color: #dddddd;
+            /* width: 270px; */
+            width: 80%;
+            display: inline-block;
+            margin: 15px 2px;
+            padding: 4px;
+        }
+        .a-sets img {
+            width: 99%;
+            height: 160px;
+            /* width: 260px;
+            height: 170px; */
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            background-color: white;
+            object-fit: contain;
+        }
+        .a-sets h4 {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+        }
+        .a-sets:hover {
+            text-decoration: none;
+            color: white;
+            background-color: rgb(0, 124, 183, 0.7);
+        }
+        .a-sets:hover img { opacity: 0.3; }
+        .a-sets:hover h4 {
+            opacity: 1;
+            background-color: darkgray;
+            padding: 2px 5px;
+            border-radius: 5px;
+        }
+   #categories {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  justify-content: center;   /* centers the whole grid if it's narrower than the container */
+  max-width: 1000px;         /* optional — caps grid width so it doesn't stretch full-screen */
+  margin: 0 auto;            /* centers the grid container itself on the page */
+}
+.room-card {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background: white;
+  text-align: center;
+}
+
+.room-card:hover {
+  transform: translateY(-4px);
+}
+
+.room-card img {
+   width: 220px;
+  height: 120px;  /* controls displayed size */
+  /*object-fit: cover;  crops to fill without distortion */
+  display: block;
+}
+
+.room-info {
+  padding: 1rem;
+}
+
+.room-info h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.1rem;
+}
+
+.room-info p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Responsive — stack down for smaller screens */
+@media (max-width: 900px) {
+  .rooms-grid {
+    grid-template-columns: repeat(2, 1fr);  /* 2 columns on tablet */
+  }
+}
+
+@media (max-width: 600px) {
+  .rooms-grid {
+    grid-template-columns: 1fr;             /* 1 column on mobile */
+  }
+}
+/*=== language switch =====*/
+.langu {
+    color: #FFFAFA;
+  text-decoration: none;
+  
+}
+
+
+   /* =================== Resize =================== */
+        @media screen and (max-width: 991px) {
+            #section1 { padding-top: 160px; padding-bottom: 90px; }
+            #section1 .ihead { text-align: center; padding: 5px; }
+            #section1 .ihead hr { margin-left: auto; }
+            #section1 .icontent { padding: 0 9%; padding-top: 6px; }
+            #section2 .ihead { padding: 80px 5px 40px 5px; }
+            #section3 .ihead .contact-left { border-right: none; }
+            #section3 .ihead .contact-hr { display: block; }
+        }
+        @media screen and (max-width: 767px) {
+            #section1 { padding-top: 100px; padding-bottom: 5px; }
+            #section1 .ihead h1 { font-size: 2.5em; }
+            #section1 .ihead h3 { font-size: 1.6em; }
+            #section1 .icontent { padding: 0 12px; padding-top: 2px; }
+            #section2 .ihead { padding-left: 12px; padding-right: 12px; }
+        }
+ </style>
+</head>
+<body data-spy="scroll" data-target=".navbar">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" >
+    <a class="navbar-brand" href="/">
+            <img class="logo" src="/logoCOSCI.png">
+        </a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navContent" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>    
+  
+ <div class="collapse navbar-collapse" id="navContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#section1"><%= t('register') %></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#section2"><%= t('room') %></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#section3"><%= t('contact') %></a>
+                </li>
+                <li class="nav-link" href="#section4">
+                    <div class="lang-switch">
+                    <a href="?lang=th" class="langu">TH</a> |
+                    <a href="?lang=en" class="langu">EN</a> |
+                    <a href="?lang=ch" class="langu">中文</a>
+</div>
+                </li>
+            </ul>
+        </div>
+</nav>
+
+<div class="container-fluid">
+        <div id="section1" class="row">
+            <div class="ihead col-lg-6">
+                <h1 style="line-height: 60px;">ระบบจองห้องเรียน</h1>
+                <h3>วิทยาลัยนวัตกรรมสื่อสารสังคม</h3>
+                <hr>
+            </div>
+            <div class="icontent col-lg-6">
+                <div class="box-login">
+                    <h4><%= t('register') %></h4> <br>
+                    <% if (error) { %><p style="color:red;"><%= error %></p><% } %>
+  <form method="POST" action="/auth/register">
+    <!-- Step 1: ID check -->
+<div id="step1">
+<input type="text" name="buasri" id="buasri" placeholder="<%= t('buasri') %>" required>
+  <div class="rank">
+    <label><input type="radio" name="role" value="student" checked><%= t('student') %></label>
+    <label><input type="radio" name="role" value="staff"><%= t('staff') %></label>
+  </div>  
+  <p id="step1-error" style="color:red;"></p>
+  <button type="button" id="btn-check">ถัดไป</button>
+</div>
+</form>
+<!-- Step 2: full details, hidden until step 1 passes -->
+<form method="POST" action="/auth/register" id="step2" style="display:none;">
+  <input type="hidden" id="hidden-buasri">
+  <input type="hidden" name="role" id="hidden-role">
+  <input type="hidden" name="ref_id" id="hidden-ref-id">
+
+  <!-- Student-only fields -->
+  <div id="student-fields" style="display:none;">
+    <input type="text" id="stu-name" name="name" readonly>
+    <input type="text" id="stu-advisor" name="advisor" readonly>
+    <input type="text" id="stu-buasri" name="buasri" readonly>
+  </div>
+
+  <!-- Staff-only fields -->
+  <div id="staff-fields" style="display:none;">
+    <input type="text" id="staff-name" name="name" readonly>
+    <input type="text" id="staff-advisor" name="advisor" readonly>
+    <input type="text" id="staff-buasri" name="buasri" readonly>
+  </div>
+
+  <!-- Common fields for both roles -->
+  <input type="email" name="email" id="input-email" placeholder="อีเมล" required>
+  <input type="password" name="password" placeholder="ตั้งรหัสผ่าน" minlength="4" maxlength="15" required>
+  <span style="font-size: 13px; display:block; margin-bottom:10px;">
+                        *รหัสผ่านต้องมีอย่างน้อย 4 ตัวอักษร และไม่เกิน 15 ตัวอักษร
+                      </span>
+  <input type="password" id="inp-pass2" placeholder="ยืนยันรหัสผ่านอีกครั้ง" required>
+
+  
+
+  <button type="submit"><%= t('register') %></button>
+</form>
+    
+    
+                            เป็นสมาชิกอยู่แล้ว?&nbsp;
+                            <a href="/auth/login" style="font-size:19px; text-decoration:underline;"><%= t('login') %></a> <br>
+                            <a href="/forgotPass"><%= t('forgotpass') %></a> &nbsp;&nbsp;
+                            <a href="/policy2">นโยบายข้อมูล</a>
+                        </p>
+  
+ 
+                    
+                </div>
+                <br><br><br>
+            </div>
+        </div>
+
+        <div id="section2" class="row bg">
+            <div class="ihead col-lg-12">
+                <h2>ห้อง</h2> <hr>
+                ห้องเรียนทั้งหมดของวิทยาลัยนวัตกรรมสื่อสารสังคม
+                <div class="real-datetime-clock">
+               <span id="date-txt"></span> — <span id="txt"></span>
+            </div>
+            </div>
+            <div id="categories" class="rooms-grid">
+            <% data.forEach(room => { %>
+            <div class="room-card">
+            <img src="<%= room.image || '/images/' + room.id + '.jpg' %>" alt="<%= room.name %>">
+            <div class="room-info">
+            <h3><%= room.name %></h3>
+            <p><%= room.capacity %> ที่นั่ง</p>
+            </div>
+            </div>
+            <% }); %>
+            </div>
+            </div>
+        </div>
+
+        <div id="section3" class="row">
+        
+        </div>
+    </div>
+</div>
+
+<!-- <div class="content2">
+  <h1>ห้องเรียน ห้องคอมพิวเตอร์</h1>
+  <h2>ห้องทั้งหมดของวิทยาลัยนวัตกรรมสื่อสารสังคม</h2>
+</div>-->
+ <!-- ดึงค่า footer มาแสดงจากไฟล์ footer.ejs -->
+    <%- include('partials/footer') -%>
+
+</body>
+<%- include("partials/foottag") -%>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('btn-check').addEventListener('click', async () => {
+    const buasri = document.getElementById('buasri').value.trim();
+    const role = document.querySelector('input[name="role"]:checked').value;
+    const errorEl = document.getElementById('step1-error');
+
+    if (!buasri) {
+      errorEl.textContent = 'กรุณากรอกรหัสบัวศรี';
+      return;
+    }
+
+    try {
+      const res = await fetch('/auth/check-buasri', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ buasri, role }),
+      });
+      const result = await res.json();
+
+      if (!result.ok) {
+        errorEl.textContent = result.message;
+        return;
+      }
+
+      document.getElementById('hidden-buasri').value = buasri;
+      document.getElementById('hidden-role').value = role;
+      document.getElementById('hidden-ref-id').value = 
+      role === 'student' ? result.userData.stu_id : result.userData.staff_id;
+
+      // ✅ NEW: show correct fields + fill in data based on role
+      if (role === 'student') {
+        document.getElementById('student-fields').style.display = 'block';
+        document.getElementById('staff-fields').style.display = 'none';
+        document.querySelectorAll('#staff-fields input').forEach(el => el.disabled = true);
+        document.querySelectorAll('#student-fields input').forEach(el => el.disabled = false);
+
+        document.getElementById('stu-name').value = result.userData.stu_name || '';
+        document.getElementById('stu-advisor').value = result.userData.advisor_name || '';
+        document.getElementById('stu-buasri').value = buasri; 
+      } else {
+        document.getElementById('staff-fields').style.display = 'block';
+        document.getElementById('student-fields').style.display = 'none';
+        document.querySelectorAll('#student-fields input').forEach(el => el.disabled = true);
+        document.querySelectorAll('#staff-fields input').forEach(el => el.disabled = false);
+
+        document.getElementById('staff-name').value = result.userData.staff_name || '';
+        document.getElementById('staff-advisor').value = '-';
+        document.getElementById('staff-buasri').value = buasri;
+      }
+
+      document.getElementById('step1').style.display = 'none';
+      document.getElementById('step2').style.display = 'block';
+    } catch (err) {
+      errorEl.textContent = 'เกิดข้อผิดพลาด กรุณาลองใหม่';
+    }
+  });
+});
+
+function startTime() {
+  const today = new Date();
+
+  // Time
+  let h = today.getHours();
+  let m = today.getMinutes();
+  let s = today.getSeconds();
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('txt').innerHTML = h + ":" + m + ":" + s;
+
+  // Date
+  const days = ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'];
+  const months = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน',
+                   'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
+
+  const dayName = days[today.getDay()];
+  const dateNum = today.getDate();
+  const monthName = months[today.getMonth()];
+  const yearBE = today.getFullYear() + 543; // Thai Buddhist Era year
+
+  document.getElementById('date-txt').innerHTML =
+    `วัน${dayName}ที่ ${dateNum} ${monthName} ${yearBE}`;
+
+  setTimeout(startTime, 1000);
+}
+
+function checkTime(i) {
+  if (i < 10) { i = "0" + i; }
+  return i;
+}
+
+startTime();
+</script>
+</html>
