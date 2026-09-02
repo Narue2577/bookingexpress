@@ -13,6 +13,110 @@
             color: #E6E7EA;
             text-decoration: none;
         }
+
+        #section2 #categories {
+            padding: 25px 0 30px 0;
+            text-align: center;
+        }
+        #section2 #categories a {
+            display: inline-block;
+            color: #666666;
+            font-weight: 500;
+            padding: 10px 24px;
+            margin: 0 10px;
+            margin-bottom: 15px;
+            background: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        #section2 #categories a.blue-a {
+            color: white;
+            background-color: #007CB7;
+        }
+        #section2 #categories a:hover {
+            text-decoration: none;
+            color: white;
+            background-color: #007CB7;
+        }
+
+        .a-sets {
+            background-color: #dddddd;
+            /* width: 270px; */
+            width: 80%;
+            display: inline-block;
+            margin: 15px 2px;
+            padding: 4px;
+        }
+        .a-sets img {
+            width: 99%;
+            height: 160px;
+            /* width: 260px;
+            height: 170px; */
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            background-color: white;
+            object-fit: contain;
+        }
+        .a-sets h4 {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+        }
+        .a-sets:hover {
+            text-decoration: none;
+            color: white;
+            background-color: rgb(0, 124, 183, 0.7);
+        }
+        .a-sets:hover img { opacity: 0.3; }
+        .a-sets:hover h4 {
+            opacity: 1;
+            background-color: darkgray;
+            padding: 2px 5px;
+            border-radius: 5px;
+        }
+   #categories {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  justify-content: center;   /* centers the whole grid if it's narrower than the container */
+  max-width: 1000px;         /* optional — caps grid width so it doesn't stretch full-screen */
+  margin: 0 auto;            /* centers the grid container itself on the page */
+}
+.room-card {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background: white;
+  text-align: center;
+}
+
+.room-card:hover {
+  transform: translateY(-4px);
+}
+
+.room-card img {
+   width: 220px;
+  height: 120px;  /* controls displayed size */
+  /*object-fit: cover;  crops to fill without distortion */
+  display: block;
+}
+
+.room-info {
+  padding: 1rem;
+}
+
+.room-info h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.1rem;
+}
+
+.room-info p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
         
 
         /* =================== Resize =================== */
@@ -45,7 +149,7 @@
                     <a class="nav-link" href="/booking/upload">ตารางเรียน</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/booking/profile">โปรไฟล์</a>
+                    <a class="nav-link" href="/profile">โปรไฟล์</a>
                 </li>
                 <li class="nav-link" href="#section4">
                     <div class="lang-switch">
@@ -66,51 +170,69 @@
             <div class="col-md-10 col-lg-6">
                 <div class="box-ww99" style="text-align: left; color: #222222;">
                     <h5>
-                        สวัสดี! &nbsp;
+                        <%= t('welcome') %> &nbsp;
                         <span class="nextlineSM">
-                           
+                           <%= user.name %>
                         </span>
                     </h5>
-                    
-                        วิชาเอก <br>
-                    
-                        <span class="nextlineSM"> 
-           ตำแหน่ง : &nbsp;
-           
                 </div>
             </div>
             <div class="col-md-1 col-lg-3"></div>
         </div>
-        
+        <div id="section2" class="row bg">
+            <div class="ihead col-lg-12">
+    <h2>ห้อง</h2> <hr>
+    <div class="real-datetime-clock">
+        <span id="date-txt"></span> — <span id="txt"></span>
+    </div>
+    <hr>
+</div>
+            
+            <div id="categories" class="rooms-grid">
+            <% data.forEach(room => { %>
+            <div class="room-card">
+            <img src="<%= room.image || '/images/' + room.id + '.jpg' %>" alt="<%= room.name %>">
+            <div class="room-info">
+            <h3><%= room.name %></h3>
+            <p><%= room.capacity %> ที่นั่ง</p>
+            </div>
+            </div>
+            <% }); %>
+            </div>
+            </div>
         <div class="row content">
             <div class="col-lg-1"></div>
-            <div class="col-lg-10">
-                <h5>รายการยืมคืนปัจจุบัน</h5> <hr>
+            <div class="col-lg-12">
+                <h5>รายการจองห้อง</h5> <hr>
     
                 <table class="tb-main">
                     <thead>
                         <tr>
                             <th style="width: 6%;">ลำดับ</th>
-                            <th style="width: 11%;">วันที่ทำรายการ</th>
-                            <th style="width: 11%;">วันที่ยืม</th>
-                            <th style="width: 11%;">วันที่คืน</th>
-                            <th style="width: 18%;">รายการ</th>
-                            <th>สถานะ</th>
+                            <th style="width: 11%;">ห้อง</th>
+                            <th style="width: 11%;">วันเวลาจองเข้า</th>
+                            <th style="width: 11%;">วันเวลาขาออก</th>
+                            <th style="width: 18%;">อาจารย์ที่ปรึกษา</th>
+                            <th style="width: 11%;">แอดมิน</th>
+                            <th style="width: 11%;">อาจารย์ที่ปรึกษา</th>
+                            <th style="width: 11%;">สถานะ</th>
                             <th style="width: 14%;"></th>
                         </tr>
                     </thead>
                     <tbody>
             
                                 <tr style="text-align: center;">
-                                    <td></td>
-                                    <td></td>
+                                    <td>1</td>
+                                    <td><input /></td>
+                                    <td><input type="date" /></td>
+                                    <td><input type="date" /></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
                                     <td>
 
-                                            <a href="/borrow_2/" class="fa fa-arrow-circle-right">
+                                            <a href="" class="fa fa-arrow-circle-right">
                                                 <span> ทำรายการต่อ</span>
                                             </a>
                                             <br>
@@ -118,11 +240,11 @@
                                                 <span> ลบ</span>
                                             </a>
 
-                                            <a href="/member" class="fa fa-star">
+                                            <a href="" class="fa fa-star">
                                                 <span> ประเมิน</span>
                                             </a>
 
-                                            <a href="/borrow_detail/" class="fa fa-arrow-circle-right">
+                                            <a href="" class="fa fa-arrow-circle-right">
                                                 <span> ดูรายละเอียด</span>
                                             </a>
                             
@@ -133,8 +255,8 @@
                             <tr>
                                 <td colspan="100%" style="text-align: center;">
                                     <br>
-                                    ไม่พบรายการยืมคืนอุปกรณ์ &nbsp;&nbsp;
-                                    <a href="/borrow_0" class="btn-main">ยืมอุปกรณ์</a>
+                                    ไม่พบรายการจองห้อง &nbsp;&nbsp;
+                                    <a href="/borrow_0" class="btn-main">จองห้อง</a>
                                     <br><br>
                                 </td>
                             </tr>
@@ -235,7 +357,38 @@
 
 
 
-<script>
+<script >
+function startTime() {
+  const today = new Date();
+
+  // Time
+  let h = today.getHours();
+  let m = today.getMinutes();
+  let s = today.getSeconds();
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('txt').innerHTML = h + ":" + m + ":" + s;
+
+  // Date
+  const days = ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'];
+  const months = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน',
+                   'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
+
+  const dayName = days[today.getDay()];
+  const dateNum = today.getDate();
+  const monthName = months[today.getMonth()];
+  const yearBE = today.getFullYear() + 543; // Thai Buddhist Era year
+
+  document.getElementById('date-txt').innerHTML =
+    `วัน${dayName}ที่ ${dateNum} ${monthName} ${yearBE}`;
+
+  setTimeout(startTime, 1000);
+}
+
+function checkTime(i) {
+  if (i < 10) { i = "0" + i; }
+  return i;
+}
 
     navAction();
 
@@ -246,6 +399,8 @@
         $('input[name="cgbowid"]').val(bwid);
         $('#clickDelSubmit').click();
     }
+
+startTime();
 
 </script>
 </html>
