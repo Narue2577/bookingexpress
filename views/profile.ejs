@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<head>
+    <%- include("partials/headtag") -%>
+    
+    <style>
+        .content {
+            margin-top: 40px;
+        }
+    </style>
+
+</head>
+<body class="bg">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" >
+    <a class="navbar-brand" href="/">
+            <img class="logo" src="/logoCOSCI.png">
+        </a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navContent" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>    
+  
+ <div class="collapse navbar-collapse" id="navContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">จองห้อง</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/booking/upload">ตารางเรียน</a>
+                </li>
+                <li class="nav-link" href="#section4">
+                    <div class="lang-switch">
+                    <a class="langu" href="?lang=th">TH</a> |
+                    <a class="langu" href="?lang=en">EN</a> |
+                    <a class="langu" href="?lang=ch">中文</a>
+</div>
+                </li>
+                <li class="nav-item" href="#section1">
+                  <a class="nav-link" href="/auth/logout" >ออกจากระบบ</a>
+                </li>
+            </ul>
+        </div>
+</nav>
+
+    <div class="container-fluid">
+        <div class="row head">
+            <div class="col-lg-12">
+                <h2>ข้อมูลสมาชิก</h2> <hr>
+            </div>
+        </div>
+    
+        <div class="row content">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
+                <div class="box-ww98">
+                     <h5>ข้อมูลสมาชิก</h5> <hr>
+                    <div class="row mdata" style="padding-top: 12px;">
+
+                        <div class="col-lg-6 spaceDiv">
+                            <b>ชื่อ-นามสกุล</b> &nbsp;<%= user.name %>
+                        </div>
+                        <div class="col-lg-6 spaceDiv">
+                            <b>อีเมล</b> &nbsp;<%= user.email %>
+                        </div>
+                        
+                            <% if (user.role === 'student') { %>
+                            <!-- Student-only fields -->
+                             <div class="col-lg-6 spaceDiv">
+                                <b>รหัสนิสิต</b> &nbsp;<%= user.id%> 
+                            </div>
+                            <div class="col-lg-12 spaceDiv">
+                                <b>วิชาเอก</b> &nbsp;<%= user.maj_th_name %>
+                            </div>
+                            <% } else { %>
+                            <!-- Staff-only fields -->
+                             <div class="col-lg-6 spaceDiv">
+                                <b>ตำแหน่ง</b> &nbsp;<%= user.staff_position %> 
+                            </div>
+                            <% } %>
+                            <div class="col-lg-6 spaceDiv">
+                            <b>เบอร์โทร</b> &nbsp;<%= user.staff_phone %> 
+                            </div>
+                            <div class="col-lg-12 spaceDiv">
+                                <b>ลิงก์ (Google Forms) แบบประเมิน</b> &nbsp; 
+                                <span style="word-wrap: break-word;">   
+                                </span>
+                            </div>
+                      
+                        
+                        <div class="col-lg-12" style="text-align: right;">
+                            <br>
+                            <button id="clickEditM" class="btn-ok">แก้ไขข้อมูล</button>
+                        </div>
+                    </div>
+      <!--              <form action="/edit_info" method="POST" class="meditdata">
+                        <div class="row" style="padding-top: 12px;">
+                            <input name="editmid" value="" hidden>
+                            
+                                <div class="col-lg-6 spaceDiv">
+                                    <b>รหัสนิสิต</b> &nbsp; 
+                            
+                            <div class="col-lg-6 spaceDiv">
+                                <b>ชื่อ-นามสกุล</b> &nbsp; 
+                            </div>
+                            
+                                <div class="col-lg-12 spaceDiv">
+                                    <b>วิชาเอก</b> &nbsp; 
+                                </div>
+
+                                <div class="col-lg-6 spaceDiv">
+                                    <b>ตำแหน่ง</b> &nbsp; 
+                                </div>
+                   
+                            <div class="col-lg-6 spaceDiv">
+                                <b>อีเมล</b> &nbsp; 
+                                <input name="newmail" value="" class="basic-input" 
+                                pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                            </div>
+                            
+
+                                <div class="col-lg-12 spaceDiv">
+                                    <b>ลิงก์ (Google Forms) แบบประเมิน <small>(ลิงก์แบบเต็มหรือแบบสั้นก็ได้)</small></b> <br> 
+                                    <input name="newctklink" value="" class="blockInput"
+                                    placeholder="https://forms.gle......." >
+                                </div>
+                       
+                            <div class="col-lg-12" style="text-align: right;">
+                                <br>
+                                <a href="/profile" class="btn-cancel">ยกเลิก</a>
+                                <button type="submit" class="btn-ok">บันทึกข้อมูล</button>
+                            </div>
+                        </div>
+                    </form> -->
+                </div>
+                <br><br>
+    
+                <h5>เปลี่ยนรหัสผ่าน</h5> <hr>
+                <div class="box-ww98">
+                    <!-- Add this block right before your password form -->
+                    <% if (error === 'oldpass') { %>
+                        <p style="color:red;">รหัสผ่านเดิมไม่ถูกต้อง!</p>
+                    <% } %>
+                    <% if (error === 'server') { %>
+                        <p style="color:red;">เกิดข้อผิดพลาด กรุณาลองใหม่</p>
+                    <% } %>
+                    <% if (success === 'passchanged') { %>
+                        <p style="color:green;">เปลี่ยนรหัสผ่านสำเร็จ</p>
+                    <% } %>
+
+                    <form action="/profile/edit-pass" method="POST" id="pass-form">
+                        <div class="row" style="padding-top: 12px;">
+                            <div class="col-lg-3 spaceDiv"><b>รหัสผ่านเดิม</b></div>
+                            <div class="col-lg-9 spaceDiv">
+                                <input id="oldpass1" name="oldpass" type="password" class="basic-input" style="width:99%;" required>
+                                
+                                <br>
+                                <span id="oldnomatch0" style="color:red; display:none;">
+                                    รหัสผ่านเดิมไม่ถูกต้อง!
+                                </span>
+                            </div>
+                            <div class="col-lg-3 spaceDiv"><b>รหัสผ่านใหม่</b></div>
+                            <div class="col-lg-9 spaceDiv">
+                                <input name="newpass" id="newpass" type="password" class="basic-input" style="width:99%;" minlength="4" maxlength="15" required>
+                                <span style="display: block; color: #333; font-size: 12px;">รหัสผ่านต้องมีความยาว 4 ถึง 15 ตัวอักษร</span>
+                            </div>
+                            <div class="col-lg-3 spaceDiv"><b>ยืนยันรหัสผ่านใหม่</b></div>
+                            <div class="col-lg-9 spaceDiv">
+                                <input id="newpass2" type="password" class="basic-input" style="width:99%;" minlength="4" maxlength="15" required>
+                                <br>
+                                <span id="passnomatch" style="color:red; display:none;">
+                                    รหัสผ่านใหม่ไม่ตรงกัน!!
+                                </span>
+                            </div>
+                            <div class="col-lg-12" style="text-align: right;">
+                                <br>
+                                <a href="/profile" class="btn-cancel">ยกเลิก</a>
+                                <button type="submit" class="btn-ok">บันทึกข้อมูล</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-1"></div>
+        </div>
+    </div>
+
+    <br><br><br>
+
+
+</body>
+
+<%- include("partials/foottag") -%>
+<script>
+document.getElementById('pass-form').addEventListener('submit', function(e) {
+  const newpass = document.getElementById('newpass').value;
+  const newpass2 = document.getElementById('newpass2').value;
+  const mismatchEl = document.getElementById('passnomatch');
+
+  if (newpass !== newpass2) {
+    e.preventDefault();
+    mismatchEl.style.display = 'block';
+    return false;
+  }
+  mismatchEl.style.display = 'none';
+});
+</script>
+</html>
