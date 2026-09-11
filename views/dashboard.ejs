@@ -1,6 +1,8 @@
 
 <!DOCTYPE html>
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
     <%- include("partials/headtag") -%>
     <style>
         .head {
@@ -117,6 +119,15 @@
   color: #666;
   font-size: 0.9rem;
 }
+
+.card-red {
+  border: 2px solid #dc3545;
+  background-color: #fdecea;
+}
+
+.card-red h3, .card-red h4 {
+  color: #dc3545;
+}
         
 
         /* =================== Resize =================== */
@@ -175,24 +186,26 @@
                            <%= user.name %>
                         </span>
                     </h5>
-                </div>
+                </div> <br>
+                <div class="box-ww99" style="text-align: center; color: #222222;">
+        <span id="date-txt"></span> — <span id="txt"></span>
+    </div>
             </div>
             <div class="col-md-1 col-lg-3"></div>
         </div>
         <div id="section2" class="row bg">
             <div class="ihead col-lg-12">
     <h2>ห้อง</h2> <hr>
-    <div class="real-datetime-clock">
-        <span id="date-txt"></span> — <span id="txt"></span>
-    </div>
-    <hr>
 </div>
             
             <div id="categories" class="rooms-grid">
             <% data.forEach(room => { %>
-            <div class="room-card">
-            <img src="<%= room.image || '/images/' + room.id + '.jpg' %>" alt="<%= room.name %>">
-            <div class="room-info">
+            <!--<div class="room-card <%= room.id === 'room601' ? 'card-red' : '' %>"> -->
+            <!--<div class="room-card" onclick="loadRoomSchedule('<%= room.id.replace('room601','') %>')"> -->
+            <% const roomNum = room.id.replace('room', '').padStart(4, '0'); %>
+   <div class="room-card" onclick="loadRoomSchedule('<%= roomNum %>')">
+    <img src="<%= room.image || '/images/' + room.id + '.jpg' %>" alt="<%= room.name %>">
+    <div class="room-info">
             <h3><%= room.name %></h3>
             <p><%= room.capacity %> ที่นั่ง</p>
             </div>
@@ -200,6 +213,7 @@
             <% }); %>
             </div>
             </div>
+            <div id="calendar"></div>
         <div class="row content">
             <div class="col-lg-1"></div>
             <div class="col-lg-12">
@@ -226,7 +240,7 @@
                                     <td><input /></td>
                                     <td><input type="date" /></td>
                                     <td><input type="date" /></td>
-                                    <td></td>
+                                    <td><select id="pet-select"><option value="">--Please choose an option--</option></select></select></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
@@ -390,7 +404,28 @@ function checkTime(i) {
   return i;
 }
 
-    navAction();
+startTime();
+
+let calendar; // keep a reference so we can refetch events later
+
+document.addEventListener('DOMContentLoaded', function() {
+  const calendarEl = document.getElementById('calendar');
+  calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'timeGridWeek',
+    locale: 'th',
+    slotMinTime: '08:00:00',
+    slotMaxTime: '20:00:00',
+    events: [], // shows ALL rooms by default
+  });
+  calendar.render();
+});
+
+function loadRoomSchedule(roomId) {
+    console.log('🔍 Filtering by room:', roomId); // TEMP
+  calendar.removeAllEventSources();
+  calendar.addEventSource(`/timetable/calendar-events?room=${roomId}`);
+}
+navAction();
 
     // ช่วง COVID-19
     // alert('สำหรับนิสิตที่จำเป็นต้องเข้ามาที่วิทยาลัยฯ นิสิตจะต้องตรวจ ATK ที่โต๊ะ รปภ. ชั้น 1 โดยนิสิตต้องนำชุดตรวจมาเอง \nขออภัยในความไม่สะดวก');
@@ -399,8 +434,6 @@ function checkTime(i) {
         $('input[name="cgbowid"]').val(bwid);
         $('#clickDelSubmit').click();
     }
-
-startTime();
 
 </script>
 </html>
