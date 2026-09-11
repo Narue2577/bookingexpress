@@ -5,6 +5,7 @@ const { pool, pool2 } = require('../db');
 const fs = require('fs');
 const path = require('path');
 
+
 const roomData = JSON.parse(
   fs.readFileSync(path.join(__dirname, '../data/data.json'), 'utf8')
 );
@@ -13,6 +14,8 @@ const roomsArray = Object.values(roomData);
 router.get('/login', (req, res) => {
   res.render('login', { error: null, data: roomsArray });
 });
+
+
 
 router.get('/register', (req, res) => {
   res.render('register', { error: null, data: roomsArray });
@@ -25,6 +28,8 @@ router.get('/policy2', (req, res) => {
 router.get('/captcha', (req, res) => {
   res.render('index_captcha.ejs');
 });
+
+
 
 router.post('/login', async (req, res) => {
   const { buasri, role, password } = req.body;
@@ -45,7 +50,7 @@ router.post('/login', async (req, res) => {
     }
 
     const token = jwt.sign(
-      { id: user.id, role: user.role, name: user.name },
+      { id: user.mem_id, role: user.role, name: user.name },
       process.env.JWT_SECRET,
       { expiresIn: '2h' }
     );
@@ -57,6 +62,8 @@ router.post('/login', async (req, res) => {
     res.render('login', { error: 'เกิดข้อผิดพลาด', data: roomsArray });
   }
 });
+
+
 
 router.post('/check-buasri', async (req, res) => {
   const { buasri, role } = req.body;
