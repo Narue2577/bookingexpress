@@ -19,6 +19,7 @@
         }
 
 </style>
+<meta charset="UTF-8">
 </head>
 <body class="bg">
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" >
@@ -35,7 +36,7 @@
                     <a class="nav-link" href="/booking/dashboard">จองห้อง</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#section3">ติดต่อ</a>
+                    <a class="nav-link" href="/profile">โปรไฟล์</a>
                 </li>
                 <li class="nav-link" href="#section4">
                     <div class="lang-switch">
@@ -55,16 +56,150 @@
             <div class="col-md-1 col-lg-3"></div>
             <div class="col-md-10 col-lg-6">
                 <div class="box-ww99" style="text-align: left; color: #222222;">
-                 <h2>อัปโหลดตารางเรียน (Excel)</h2>
-  <form action="/timetable/upload" method="POST" enctype="multipart/form-data">
-    <input type="file" name="file" accept=".xlsx,.xls" required>
-    <button type="submit">อัปโหลด</button>
-  </form>
-                </div>
+                    <h5>
+                        <%= t('welcome') %> &nbsp;
+                        <span class="nextlineSM">
+                           <%= user.name %>
+                        </span>
+                    </h5>
+                </div> <br>
+                <div class="box-ww99" style="text-align: center; color: #222222;">
+        <span id="date-txt"></span> — <span id="txt"></span>
+    </div>
             </div>
             <div class="col-md-1 col-lg-3"></div>
         </div>
         
+        <div class="upload-container">
+  <h3>อัปโหลดตารางเรียน (Excel)</h3>
+
+  <div id="upload-section" style="<%= currentFile ? 'display:none;' : '' %>">
+    <div
+      class="border-2 border-dashed rounded-lg p-10 text-center cursor-pointer"
+      onclick="document.getElementById('fileInput').click()"
+    >
+      <p id="selected-filename">คลิกเพื่อเลือกไฟล์ Excel หรือวางไฟล์ที่นี่</p>
+      <input
+        type="file"
+        id="fileInput"
+        accept=".xlsx,.xls"
+        style="display:none;"
+      >
+    </div>
+    <button id="upload-btn" style="margin-top:10px;">อัปโหลด</button>
+  </div>
+
+  <div id="file-info" style="<%= currentFile ? '' : 'display:none;' %>">
+    <p>📄 ไฟล์ปัจจุบัน: <strong id="current-filename"><%= currentFile || '' %></strong></p>
+    <button id="remove-btn" style="background:#dc3545; color:white;">ลบไฟล์</button>
+  </div>
+
+  <p id="status-text"></p>
+</div>
+
+<script>
+const fileInput = document.getElementById('fileInput');
+const selectedFilename = document.getElementById('selected-filename');
+const uploadBtn = document.getElementById('upload-btn');
+const removeBtn = document.getElementById('remove-btn');
+const statusText = document.getElementById('status-text');
+const uploadSection = document.getElementById('upload-section');
+const fileInfo = document.getElementById('file-info');
+const currentFilenameEl = document.getElementById('current-filename');
+
+let selectedFile = null;
+
+// Show filename immediately when a file is chosen
+fileInput.addEventListener('change', () => {
+  if (fileInput.files.length > 0) {
+    selectedFile = fileInput.files[0];
+    selectedFilename.textContent = '📄 ' + selectedFile.name;
+  }
+});
+
+// Upload
+uploadBtn.addEventListener('click', async () => {
+  if (!selectedFile) {
+    statusText.textContent = 'กรุณาเลือกไฟล์ก่อน';
+    return;
+  }
+
+  statusText.textContent = 'กำลังอัปโหลด...';
+
+  const formData = new FormData();
+  formData.append('file', selectedFile);
+
+  try {
+    const res = await fetch('/timetable/upload', {
+      method: 'POST',
+      body: formData,
+    });
+    const result = await res.json();
+
+    if (!res.ok) throw new Error(result.error || 'Upload failed');
+
+    statusText.textContent = 'อัปโหลดสำเร็จ ✓';
+    currentFilenameEl.textContent = result.filename;
+    uploadSection.style.display = 'none';
+    fileInfo.style.display = 'block';
+  } catch (err) {
+    statusText.textContent = 'เกิดข้อผิดพลาด: ' + err.message;
+  }
+});
+
+// Remove
+removeBtn.addEventListener('click', async () => {
+  if (!confirm('ต้องการลบไฟล์นี้ใช่หรือไม่?')) return;
+
+  try {
+    const res = await fetch('/timetable', { method: 'DELETE' });
+    const result = await res.json();
+
+    if (!res.ok) throw new Error('Delete failed');
+
+    // Reset UI back to upload state
+    fileInput.value = '';
+    selectedFile = null;
+    selectedFilename.textContent = 'คลิกเพื่อเลือกไฟล์ Excel หรือวางไฟล์ที่นี่';
+    statusText.textContent = 'ลบไฟล์แล้ว';
+    fileInfo.style.display = 'none';
+    uploadSection.style.display = 'block';
+  } catch (err) {
+    statusText.textContent = 'เกิดข้อผิดพลาด: ' + err.message;
+  }
+});
+
+//clock date
+function startTime() {
+  const today = new Date();
+  let h = today.getHours();
+  let m = today.getMinutes();
+  let s = today.getSeconds();
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('txt').innerHTML = h + ":" + m + ":" + s;
+
+  const days = ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'];
+  const months = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน',
+                   'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
+
+  const dayName = days[today.getDay()];
+  const dateNum = today.getDate();
+  const monthName = months[today.getMonth()];
+  const yearBE = today.getFullYear() + 543;
+
+  document.getElementById('date-txt').innerHTML =
+    `วัน${dayName}ที่ ${dateNum} ${monthName} ${yearBE}`;
+
+  setTimeout(startTime, 1000);
+}
+
+function checkTime(i) {
+  if (i < 10) { i = "0" + i; }
+  return i;
+}
+startTime();
+</script>
         
     </div>
   
